@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import { compose, createStore, combineReducers, applyMiddleware } from 'redux';
 import { routerMiddleware, connectRouter } from 'connected-react-router';
 // Import all reducers
-import * as reducers from 'reducers';
+import * as reducers from '../reducers';
 
 // Configure reducer to store state at state.router
 // You can store it elsewhere by specifying a custom `routerStateSelector`
