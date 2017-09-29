@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadApp } from 'actions/app';
+import { loadApp } from '../actions/app';
 import styles from './app.css';
 import AddItem from '../components/addItem';
 import ChooseCurrency from '../components/chooseCurrency';
@@ -34,7 +34,7 @@ export class Basket extends Component {
 
   addToBasket(item) {
     // TODO dispatch instead of mutating
-    let newArray = this.state.items.slice();    
+    let newArray = this.state.items.slice();
     newArray.push(item);
     this.setState({ items: newArray }, );
     this.updateBasket();
@@ -59,12 +59,17 @@ export class Basket extends Component {
   render() {
     return (
       <div className={styles.basket}>
-        {this.state.items.map(function (item, index) {
-          return <div className="item" key={index}>{item.name} {item.price} per {item.unit}</div>;
-        })}
-        <div>Total = {this.getTotal()}</div>
         <AddItem addBasketItem={this.addToBasket.bind(this)} />
-        <ChooseCurrency />
+        {this.state.items.map(function (item, index) {
+          return <div className={styles.basketItem} key={index}>{item.name} {item.price} per {item.unit}</div>;
+        })}
+        <div className={styles.spacer}></div>
+        <div className={styles.dropDown}>
+          <ChooseCurrency changeRate={this.setRate.bind(this)}/>
+        </div>
+        <div className={styles.spacer}></div>
+        <div className={styles.total}>Total = {this.getTotal()}</div>
+
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadApp } from 'actions/app';
+import { loadApp } from '../actions/app';
 import styles from './app.css';
 import { Basket } from './basket';
 

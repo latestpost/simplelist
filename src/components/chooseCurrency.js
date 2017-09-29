@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 class ChooseCurrency extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { value: 'USD' };
     this.currencies = [
       { name: 'USD', rate: 1.23 },
@@ -16,13 +16,14 @@ class ChooseCurrency extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    this.props.changeRate(this.currencies[event.target.value].rate);
   }
 
   render() {
     return (
-        <select onChange={event => this.handleChange(event)} value={this.state.value}>
+        <select onChange={event => {this.handleChange(event)}} value={this.state.value}>
           {this.currencies.map(function (item, index) {
-            return <option key={index}>{item.name}</option>;
+            return <option value={index} key={index}>{item.name}</option>;
           })}
         </select>
     );
